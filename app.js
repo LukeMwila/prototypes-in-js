@@ -29,3 +29,28 @@ console.log(john.calculateAge())
 console.log(mary.getFullName())
 mary.getsMarried('Smith')
 console.log(mary.getFullName())
+console.log(mary.hasOwnProperty('firstName'))
+
+const personPrototypes = {
+    greeting: function(){
+        return `Hello there ${this.firstName} ${this.lastName}`
+    },
+    getsMarried: function(newLastName){
+        this.lastName = newLastName
+    },
+}
+
+const maryAnne = Object.create(personPrototypes)
+maryAnne.firstName = 'Mary'
+maryAnne.lastName = 'Williams' 
+maryAnne.age = 30
+
+console.log(maryAnne.greeting())
+
+const brad = Object.create(personPrototypes, {
+    firstName: {value: 'Brad'},
+    lastName: {value: 'Traversy'},
+    age: {value: 36}
+})
+
+console.log(brad)
